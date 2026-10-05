@@ -1,172 +1,32 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thitiwut Phimpisai — Portfolio</title>
-  <meta name="description" content="Portfolio of Thitiwut Phimpisai — projects, skills and how to get in touch.">
-  <link rel="canonical" href="https://thitiwutphi.github.io/Portfolio/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Thitiwut Phimpisai — Portfolio">
-  <meta property="og:description" content="Projects, skills and how to get in touch.">
-  <meta property="og:url" content="https://thitiwutphi.github.io/Portfolio/">
-  <meta property="og:image" content="https://github.com/thitiwutphi.png">
-  <meta name="twitter:card" content="summary">
-
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <script>
-    // Apply the saved theme before first paint to avoid a flash.
-    (function () {
-      var root = document.documentElement;
-      root.classList.add('js');
-      try {
-        var theme = localStorage.getItem('theme');
-        if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
-      } catch (e) {}
-    })();
-  </script>
-  <script src="assets/js/main.js" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <nav class="container nav" aria-label="Main">
-      <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true">TP</span>
-        <span class="brand-name">Thitiwut</span>
-      </a>
-      <div class="nav-actions">
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="icon-btn theme-toggle" type="button" aria-label="Toggle theme">
-          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        </button>
-        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <main id="main">
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="top">
-      <div class="container hero-inner">
-        <div class="hero-media">
-          <img class="avatar" src="https://github.com/thitiwutphi.png?size=440" alt="Portrait of Thitiwut Phimpisai" width="220" height="220">
-        </div>
-        <div class="hero-copy">
-          <p class="eyebrow">Hello, I'm</p>
-          <h1>Thitiwut Phimpisai</h1>
-          <!-- TODO: your role / title -->
-          <p class="headline">Software Developer</p>
-          <!-- TODO: a one or two sentence introduction -->
-          <p class="lead">I enjoy building things for the web — from the first sketch to a working product. Here you'll find the projects I've worked on and what I'm learning along the way.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#projects">View projects</a>
-            <a class="btn" href="#contact">Get in touch</a>
-          </div>
-          <div class="social">
-            <a class="icon-btn icon-btn-outline" href="https://github.com/thitiwutphi" target="_blank" rel="noopener" aria-label="GitHub profile">
-              <svg class="icon icon-fill" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-            </a>
-            <a class="icon-btn icon-btn-outline" href="mailto:thitiwutphimpisai@gmail.com" aria-label="Send an email">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="container about-grid reveal">
-        <div>
-          <p class="section-label">About</p>
-          <h2>A bit about me</h2>
-          <!-- TODO: tell your story — background, what you work on, what you're looking for -->
-          <div class="prose">
-            <p>I'm a developer who likes turning ideas into clean, reliable software. I care about building things that are simple to use and easy to maintain.</p>
-            <p>This site is where I share my work. Have a look around, and feel free to reach out if you'd like to collaborate.</p>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>Tech I work with</h3>
-          <!-- TODO: replace with your own skills -->
-          <ul class="chips">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Git</li>
-            <li>GitHub</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS (loaded from GitHub, see assets/js/main.js) ============ -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="section-label">Projects</p>
-          <h2>Things I've built</h2>
-          <p class="section-intro">My latest public repositories, pulled live from GitHub.</p>
-        </div>
-        <ul class="projects-grid" id="project-list" aria-busy="true">
-          <li class="skeleton-card" aria-hidden="true"></li>
-          <li class="skeleton-card" aria-hidden="true"></li>
-          <li class="skeleton-card" aria-hidden="true"></li>
-        </ul>
-        <p class="status" id="project-status" hidden></p>
-        <noscript>
-          <p class="status">Turn on JavaScript to load projects, or browse them on <a href="https://github.com/thitiwutphi?tab=repositories">GitHub</a>.</p>
-        </noscript>
-        <p class="more-link">
-          <a href="https://github.com/thitiwutphi?tab=repositories" target="_blank" rel="noopener">See everything on GitHub
-            <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-card reveal">
-          <p class="section-label">Contact</p>
-          <h2>Let's work together</h2>
-          <p>Have a project in mind or just want to say hello? My inbox is open.</p>
-          <div class="actions actions-center">
-            <a class="btn btn-primary" href="mailto:thitiwutphimpisai@gmail.com">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              thitiwutphimpisai@gmail.com
-            </a>
-            <a class="btn" href="https://github.com/thitiwutphi" target="_blank" rel="noopener">
-              <svg class="icon icon-fill" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year">2026</span> Thitiwut Phimpisai</p>
-      <p>Built with HTML, CSS &amp; JavaScript · Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></p>
-    </div>
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- seo:start -->
+    <!-- seo:end -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Apply the saved theme before first paint (kept in sync with ThemeProvider).
+      ;(function () {
+        var theme = 'system'
+        try {
+          theme = localStorage.getItem('theme') || 'system'
+        } catch (e) {}
+        var dark =
+          theme === 'dark' ||
+          (theme !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- app:noscript -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

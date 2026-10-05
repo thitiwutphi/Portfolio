@@ -1,37 +1,75 @@
 # Portfolio
 
-Personal portfolio of **Thitiwut Phimpisai** — live at **https://thitiwutphi.github.io/Portfolio/**
+Personal portfolio of **Thitiwut Phimpisai**, Robotics Software Engineer — live at
+**https://thitiwutphi.github.io/Portfolio/**
 
-A plain HTML/CSS/JavaScript site (no build step) hosted on GitHub Pages from the `main` branch.
+## Stack
 
-## Structure
+- **React 19** + **TypeScript** (strict) on **Vite 8**
+- **TanStack Router** — file-based, type-safe routes with automatic code splitting
+- **TanStack Query** — GitHub repositories fetched and cached client-side, validated with **zod**
+- **shadcn/ui** (Radix) + **Tailwind CSS 4** — light / dark / system theme
+- **Vitest** + Testing Library, **ESLint** (type-aware, a11y, TanStack rules), **Prettier**
+- **GitHub Actions** → GitHub Pages, **Dependabot** for dependency updates
 
-```
-index.html            Page content (hero, about, projects, contact)
-assets/css/style.css  Styles, including light/dark theme tokens
-assets/js/main.js     Theme toggle, mobile menu, and the GitHub projects feed
-assets/favicon.svg    Browser tab icon
-.nojekyll             Tells GitHub Pages to serve files as-is
-```
+## Getting started
 
-## Editing
-
-- **Text** — edit `index.html`; spots to personalise are marked with `<!-- TODO -->`.
-- **Projects** — loaded automatically from your public GitHub repositories (forks and archived repos are skipped). Hide a repo or change how many are shown with `HIDDEN_REPOS` / `MAX_PROJECTS` at the top of `assets/js/main.js`. A repo's description and "Website" field on GitHub become the card text and its "Live demo" link.
-- **Photo** — uses your GitHub avatar; to use another image, put it in `assets/` and change the `<img class="avatar">` `src`.
-- **Colours** — change the variables at the top of `assets/css/style.css`.
-
-## Preview locally
+Requires [Bun](https://bun.sh) (package manager and script runner). Node.js 24 (see `.nvmrc`) is
+recommended — CI runs the toolchain on Node.
 
 ```sh
-python3 -m http.server 8000
-# open http://localhost:8000
+bun install
+bun run dev        # http://localhost:5173/Portfolio/
 ```
 
-## Publish
+| Script            | What it does                             |
+| ----------------- | ---------------------------------------- |
+| `bun run dev`     | Start the dev server                     |
+| `bun run build`   | Type-check and build to `dist/`          |
+| `bun run preview` | Serve the production build locally       |
+| `bun run test`    | Run unit and integration tests           |
+| `bun run lint`    | Lint with ESLint                         |
+| `bun run format`  | Format with Prettier                     |
+| `bun run check`   | Type-check, lint, format check and tests |
 
-```sh
-git add -A && git commit -m "Update portfolio" && git push
+## Editing content
+
+All text lives in typed data files — no component changes needed:
+
+| File                        | Content                                           |
+| --------------------------- | ------------------------------------------------- |
+| `src/content/profile.ts`    | Name, role, tagline, about, links, focus areas    |
+| `src/content/experience.ts` | Work history                                      |
+| `src/content/projects.ts`   | Projects (each gets a page at `/projects/<slug>`) |
+| `src/content/skills.ts`     | Skill groups                                      |
+| `src/content/education.ts`  | Education, certifications, awards                 |
+| `src/content/seo.ts`        | Site URL and page titles / descriptions           |
+
+The **On GitHub** section lists public, non-fork repositories automatically.
+
+## Project structure
+
+```
+src/
+  routes/              TanStack Router file routes (__root, index, projects/$slug)
+  components/home/     Home page sections
+  components/layout/   Header, footer, mobile nav, section wrappers
+  components/ui/       shadcn/ui components (add more with `bunx shadcn@latest add <name>`)
+  features/github/     GitHub API client, query options and repo list
+  content/             Portfolio content (see above)
+scripts/static-pages.ts  Build step that writes per-page HTML, 404.html and sitemap.xml
+public/                Favicon, Open Graph image
 ```
 
-GitHub Pages redeploys automatically within a minute or two.
+## How deployment works
+
+Every push to `main` runs `.github/workflows/deploy.yml`: type-check → lint → format check → tests →
+build → deploy to GitHub Pages. Pull requests run the same checks without deploying.
+
+GitHub Pages only serves static files, so the build also writes a static HTML file for every project
+(`dist/projects/<slug>.html`) with that page's title, description and Open Graph tags. This makes deep
+links load directly and gives correct link previews on LinkedIn and other sites, whose crawlers don't
+run JavaScript. Unknown URLs fall back to `404.html`, where the app renders its not-found page.
+
+The site is served from `/Portfolio/` (`base` in `vite.config.ts`). If you move it to a custom domain
+or a `<user>.github.io` repository, change `base` and `site.url` in `src/content/seo.ts`.
