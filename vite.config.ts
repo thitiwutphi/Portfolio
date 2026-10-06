@@ -37,6 +37,7 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
+    environmentOptions: { happyDOM: { settings: { disableIframePageLoading: true } } },
     setupFiles: ['./src/test/setup.ts'],
     css: false,
     restoreMocks: true,

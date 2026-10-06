@@ -1,14 +1,11 @@
-import type { QueryClient } from '@tanstack/react-query'
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
-import { lazy, Suspense } from 'react'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { lazy, Suspense, useEffect } from 'react'
 
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { NotFound } from '@/components/not-found'
-
-export interface RouterContext {
-  queryClient: QueryClient
-}
+import { localeInfo } from '@/i18n/locales'
+import { useLocale, useMessages } from '@/i18n/use-locale'
 
 const RouterDevtools =
   import.meta.env.DEV && import.meta.env.MODE !== 'test'
@@ -19,19 +16,26 @@ const RouterDevtools =
       )
     : () => null
 
-export const Route = createRootRouteWithContext<RouterContext>()({
+export const Route = createRootRoute({
   component: RootLayout,
   notFoundComponent: NotFound,
 })
 
 function RootLayout() {
+  const locale = useLocale()
+  const t = useMessages()
+
+  useEffect(() => {
+    document.documentElement.lang = localeInfo[locale].htmlLang
+  }, [locale])
+
   return (
     <div className="flex min-h-svh flex-col">
       <a
         href="#main"
         className="sr-only rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
       >
-        Skip to content
+        {t.skipToContent}
       </a>
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">

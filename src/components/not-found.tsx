@@ -2,24 +2,29 @@ import { Link } from '@tanstack/react-router'
 import { ArrowLeft } from 'lucide-react'
 
 import { Container } from '@/components/layout/container'
-import { Eyebrow } from '@/components/layout/section'
 import { Button } from '@/components/ui/button'
 import { notFoundMeta } from '@/content/seo'
 import { usePageMeta } from '@/hooks/use-page-meta'
+import { useLocale, useLocaleParams, useMessages } from '@/i18n/use-locale'
 
 export function NotFound() {
-  usePageMeta(notFoundMeta)
+  const locale = useLocale()
+  const t = useMessages()
+  const localeParams = useLocaleParams()
+  usePageMeta(notFoundMeta(locale))
 
   return (
     <Container className="flex flex-col items-center py-28 text-center sm:py-36">
-      <Eyebrow>Error 404</Eyebrow>
-      <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Page not found</h1>
-      <p className="mt-3 max-w-md text-muted-foreground">
-        The page you are looking for doesn&apos;t exist or has been moved.
+      <p className="text-xs font-semibold tracking-wider text-brand uppercase">
+        {t.notFound.eyebrow}
       </p>
+      <h1 className="mt-3 text-3xl font-bold tracking-tight text-heading sm:text-4xl">
+        {t.notFound.title}
+      </h1>
+      <p className="mt-3 max-w-md text-muted-foreground">{t.notFound.description}</p>
       <Button asChild className="mt-8">
-        <Link to="/">
-          <ArrowLeft data-icon="inline-start" /> Back to home
+        <Link to="/{-$locale}" params={localeParams}>
+          <ArrowLeft data-icon="inline-start" /> {t.notFound.backHome}
         </Link>
       </Button>
     </Container>

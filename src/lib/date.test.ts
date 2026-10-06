@@ -4,14 +4,14 @@ import { formatDuration, formatPeriod, formatYearMonth, monthsBetween } from './
 
 describe('date helpers', () => {
   it('formats a year and month', () => {
-    expect(formatYearMonth({ year: 2024, month: 4 })).toBe('Apr 2024')
+    expect(formatYearMonth({ year: 2024, month: 4 })).toBe('April 2024')
   })
 
   it('formats a period, using "Present" when there is no end date', () => {
     expect(formatPeriod({ year: 2024, month: 4 }, { year: 2026, month: 9 })).toBe(
-      'Apr 2024 – Sep 2026',
+      'April 2024 – September 2026',
     )
-    expect(formatPeriod({ year: 2024, month: 4 })).toBe('Apr 2024 – Present')
+    expect(formatPeriod({ year: 2024, month: 4 })).toBe('April 2024 – Present')
   })
 
   it('counts months inclusively, matching LinkedIn', () => {
@@ -22,9 +22,18 @@ describe('date helpers', () => {
   })
 
   it('formats durations', () => {
-    expect(formatDuration(30)).toBe('2 yrs 6 mos')
-    expect(formatDuration(36)).toBe('3 yrs')
-    expect(formatDuration(13)).toBe('1 yr 1 mo')
-    expect(formatDuration(7)).toBe('7 mos')
+    expect(formatDuration(30)).toBe('2 years 6 months')
+    expect(formatDuration(36)).toBe('3 years')
+    expect(formatDuration(13)).toBe('1 year 1 month')
+    expect(formatDuration(7)).toBe('7 months')
+  })
+
+  it('formats Thai month names with Gregorian years, as LinkedIn does', () => {
+    expect(formatPeriod({ year: 2024, month: 4 }, { year: 2026, month: 9 }, 'th')).toBe(
+      'เมษายน 2024 – กันยายน 2026',
+    )
+    expect(formatPeriod({ year: 2024, month: 4 }, undefined, 'th')).toBe('เมษายน 2024 – ปัจจุบัน')
+    expect(formatDuration(30, 'th')).toBe('2 ปี 6 เดือน')
+    expect(formatDuration(7, 'th')).toBe('7 เดือน')
   })
 })

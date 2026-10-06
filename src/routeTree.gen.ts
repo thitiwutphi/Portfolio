@@ -9,68 +9,188 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
+import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
+import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125GalleryRouteImport } from './routes/{-$locale}/gallery'
+import { Route as Char123LocaleChar125ProjectsRouteRouteImport } from './routes/{-$locale}/projects/route'
+import { Route as Char123LocaleChar125ProjectsIndexRouteImport } from './routes/{-$locale}/projects/index'
+import { Route as Char123LocaleChar125ProjectsSlugRouteImport } from './routes/{-$locale}/projects/$slug'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
-  id: '/projects/$slug',
-  path: '/projects/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125RouteRoute =
+  Char123LocaleChar125RouteRouteImport.update({
+    id: '/{-$locale}',
+    path: '/{-$locale}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char123LocaleChar125IndexRoute =
+  Char123LocaleChar125IndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125GalleryRoute =
+  Char123LocaleChar125GalleryRouteImport.update({
+    id: '/gallery',
+    path: '/gallery',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ProjectsRouteRoute =
+  Char123LocaleChar125ProjectsRouteRouteImport.update({
+    id: '/projects',
+    path: '/projects',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ProjectsIndexRoute =
+  Char123LocaleChar125ProjectsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125ProjectsRouteRoute,
+  } as any)
+const Char123LocaleChar125ProjectsSlugRoute =
+  Char123LocaleChar125ProjectsSlugRouteImport.update({
+    id: '/$slug',
+    path: '/$slug',
+    getParentRoute: () => Char123LocaleChar125ProjectsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/projects/$slug': typeof ProjectsSlugRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/projects': typeof Char123LocaleChar125ProjectsRouteRouteWithChildren
+  '/{-$locale}/gallery': typeof Char123LocaleChar125GalleryRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/projects/$slug': typeof Char123LocaleChar125ProjectsSlugRoute
+  '/{-$locale}/projects/': typeof Char123LocaleChar125ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/projects/$slug': typeof ProjectsSlugRoute
+  '/{-$locale}/gallery': typeof Char123LocaleChar125GalleryRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/projects/$slug': typeof Char123LocaleChar125ProjectsSlugRoute
+  '/{-$locale}/projects': typeof Char123LocaleChar125ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/projects/$slug': typeof ProjectsSlugRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
+  '/{-$locale}/projects': typeof Char123LocaleChar125ProjectsRouteRouteWithChildren
+  '/{-$locale}/gallery': typeof Char123LocaleChar125GalleryRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/projects/$slug': typeof Char123LocaleChar125ProjectsSlugRoute
+  '/{-$locale}/projects/': typeof Char123LocaleChar125ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/$slug'
+  fullPaths:
+    | '/{-$locale}'
+    | '/{-$locale}/projects'
+    | '/{-$locale}/gallery'
+    | '/{-$locale}/'
+    | '/{-$locale}/projects/$slug'
+    | '/{-$locale}/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/$slug'
-  id: '__root__' | '/' | '/projects/$slug'
+  to:
+    | '/{-$locale}/gallery'
+    | '/{-$locale}'
+    | '/{-$locale}/projects/$slug'
+    | '/{-$locale}/projects'
+  id:
+    | '__root__'
+    | '/{-$locale}'
+    | '/{-$locale}/projects'
+    | '/{-$locale}/gallery'
+    | '/{-$locale}/'
+    | '/{-$locale}/projects/$slug'
+    | '/{-$locale}/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/{-$locale}': {
+      id: '/{-$locale}'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/$slug': {
-      id: '/projects/$slug'
-      path: '/projects/$slug'
-      fullPath: '/projects/$slug'
-      preLoaderRoute: typeof ProjectsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+    '/{-$locale}/': {
+      id: '/{-$locale}/'
+      path: '/'
+      fullPath: '/{-$locale}/'
+      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/gallery': {
+      id: '/{-$locale}/gallery'
+      path: '/gallery'
+      fullPath: '/{-$locale}/gallery'
+      preLoaderRoute: typeof Char123LocaleChar125GalleryRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/projects': {
+      id: '/{-$locale}/projects'
+      path: '/projects'
+      fullPath: '/{-$locale}/projects'
+      preLoaderRoute: typeof Char123LocaleChar125ProjectsRouteRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/projects/': {
+      id: '/{-$locale}/projects/'
+      path: '/'
+      fullPath: '/{-$locale}/projects/'
+      preLoaderRoute: typeof Char123LocaleChar125ProjectsIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125ProjectsRouteRoute
+    }
+    '/{-$locale}/projects/$slug': {
+      id: '/{-$locale}/projects/$slug'
+      path: '/$slug'
+      fullPath: '/{-$locale}/projects/$slug'
+      preLoaderRoute: typeof Char123LocaleChar125ProjectsSlugRouteImport
+      parentRoute: typeof Char123LocaleChar125ProjectsRouteRoute
     }
   }
 }
 
+interface Char123LocaleChar125ProjectsRouteRouteChildren {
+  Char123LocaleChar125ProjectsSlugRoute: typeof Char123LocaleChar125ProjectsSlugRoute
+  Char123LocaleChar125ProjectsIndexRoute: typeof Char123LocaleChar125ProjectsIndexRoute
+}
+
+const Char123LocaleChar125ProjectsRouteRouteChildren: Char123LocaleChar125ProjectsRouteRouteChildren =
+  {
+    Char123LocaleChar125ProjectsSlugRoute:
+      Char123LocaleChar125ProjectsSlugRoute,
+    Char123LocaleChar125ProjectsIndexRoute:
+      Char123LocaleChar125ProjectsIndexRoute,
+  }
+
+const Char123LocaleChar125ProjectsRouteRouteWithChildren =
+  Char123LocaleChar125ProjectsRouteRoute._addFileChildren(
+    Char123LocaleChar125ProjectsRouteRouteChildren,
+  )
+
+interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125ProjectsRouteRoute: typeof Char123LocaleChar125ProjectsRouteRouteWithChildren
+  Char123LocaleChar125GalleryRoute: typeof Char123LocaleChar125GalleryRoute
+  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+}
+
+const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
+  {
+    Char123LocaleChar125ProjectsRouteRoute:
+      Char123LocaleChar125ProjectsRouteRouteWithChildren,
+    Char123LocaleChar125GalleryRoute: Char123LocaleChar125GalleryRoute,
+    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+  }
+
+const Char123LocaleChar125RouteRouteWithChildren =
+  Char123LocaleChar125RouteRoute._addFileChildren(
+    Char123LocaleChar125RouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ProjectsSlugRoute: ProjectsSlugRoute,
+  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

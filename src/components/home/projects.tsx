@@ -1,57 +1,75 @@
 import { Link } from '@tanstack/react-router'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronRight, MonitorPlay } from 'lucide-react'
 
-import { IconTile } from '@/components/icon-tile'
-import { projectIcons } from '@/components/icons'
-import { Section } from '@/components/layout/section'
-import { ProjectCard } from '@/components/project-card'
-import { projectContext, projects } from '@/content/projects'
+import { ProjectThumb } from '@/components/project-thumb'
+import { companies } from '@/content/companies'
+import { projects } from '@/content/projects'
+import { useLocale, useLocaleParams, useMessages } from '@/i18n/use-locale'
+import { homeProjects } from '@/lib/projects'
+import { cn } from '@/lib/utils'
 
-const featured = projects.filter((project) => project.featured)
-const earlier = projects.filter((project) => !project.featured)
+import { itemCardClass } from './item-card'
+import { Panel } from './panel'
 
-export function Projects() {
+/** Featured Projects on the home page. Renders nothing until there are projects. */
+export function Projects({ className }: { className?: string }) {
+  const locale = useLocale()
+  const t = useMessages()
+  const localeParams = useLocaleParams()
+  const shown = homeProjects()
+  if (shown.length === 0) return null
+
   return (
-    <Section
+    <Panel
       id="projects"
-      eyebrow="Projects"
-      title="Selected work"
-      description="Robots and platforms I've built — open a project for the details."
+      title={t.featuredProjects}
+      icon={MonitorPlay}
+      className={className}
+      action={
+        <Link
+          to="/{-$locale}/projects"
+          params={localeParams}
+          className="inline-flex shrink-0 items-center gap-1 rounded-md py-1 text-sm font-medium text-brand underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+        >
+          {t.allProjects.viewAll(projects.length)}
+          <ArrowRight aria-hidden="true" className="size-3.5" />
+        </Link>
+      }
     >
-      <ul className="grid gap-4 md:grid-cols-2">
-        {featured.map((project) => (
-          <li key={project.slug}>
-            <ProjectCard project={project} />
-          </li>
-        ))}
-      </ul>
-
-      <h3 className="mt-14 mb-4 font-mono text-xs font-medium tracking-widest text-muted-foreground uppercase">
-        Earlier work
-      </h3>
-      <ul className="divide-y overflow-hidden rounded-xl border">
-        {earlier.map((project) => (
+      <ul className="@container space-y-3">
+        {shown.map((project) => (
           <li key={project.slug}>
             <Link
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="group flex items-center gap-4 p-4 transition-colors hover:bg-muted/50 focus-visible:bg-muted/50 focus-visible:outline-none sm:px-5"
+              to="/{-$locale}/projects/$slug"
+              params={{ ...localeParams, slug: project.slug }}
+              className={cn(
+                itemCardClass,
+                'group flex items-center gap-4 p-2.5 pr-3 transition-[border-color,box-shadow] outline-none hover:border-brand/40 hover:shadow-md focus-visible:ring-3 focus-visible:ring-ring/50',
+              )}
             >
-              <IconTile icon={projectIcons[project.icon]} className="size-9" />
+              <ProjectThumb
+                project={project}
+                className="h-[54px] w-20 @[22rem]:h-16 @[22rem]:w-24 @[25rem]:h-[76px] @[25rem]:w-[113px]"
+              />
               <span className="min-w-0 flex-1">
-                <span className="block font-medium">{project.title}</span>
-                <span className="block truncate text-sm text-muted-foreground">
-                  {projectContext(project)}
+                <span className="block text-sm font-semibold text-heading">
+                  {project.title[locale]}
+                </span>
+                <span className="mt-0.5 block text-xs text-brand">
+                  {companies[project.company].name[locale]}
+                </span>
+                <span className="mt-1 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+                  {project.summary[locale]}
                 </span>
               </span>
-              <ArrowRight
+              <ChevronRight
                 aria-hidden="true"
-                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
+                className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-brand"
               />
             </Link>
           </li>
         ))}
       </ul>
-    </Section>
+    </Panel>
   )
 }

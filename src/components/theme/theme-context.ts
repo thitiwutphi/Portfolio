@@ -1,11 +1,15 @@
 import { createContext, useContext } from 'react'
 
 export type Theme = 'light' | 'dark' | 'system'
+export type ResolvedTheme = 'light' | 'dark'
 
 export const THEME_STORAGE_KEY = 'theme'
 
 export interface ThemeContextValue {
+  /** The user's choice ('system' follows the OS setting). */
   theme: Theme
+  /** What is actually shown. */
+  resolvedTheme: ResolvedTheme
   setTheme: (theme: Theme) => void
 }
 

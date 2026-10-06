@@ -7,14 +7,14 @@
     <!-- seo:end -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" />
     <script>
       // Apply the saved theme before first paint (kept in sync with ThemeProvider).
+      // Light by default; dark only when the visitor chose it with the switch.
       ;(function () {
-        var theme = 'system'
+        var theme = 'light'
         try {
-          theme = localStorage.getItem('theme') || 'system'
+          theme = localStorage.getItem('theme') || 'light'
         } catch (e) {}
         var dark =
           theme === 'dark' ||

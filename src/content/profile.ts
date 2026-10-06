@@ -1,52 +1,54 @@
-export const profile = {
-  name: 'Thitiwut Phimpisai',
-  firstName: 'Thitiwut',
-  initials: 'TP',
-  role: 'Robotics Software Engineer',
-  location: 'Bangkok Metropolitan Area, Thailand',
-  tagline:
-    'I build the software that takes robots out of the lab and into the field — from motor control and SLAM to platforms that run whole fleets in real time.',
-  about: [
-    'Driven by a deep passion for programming and robotics, I have dedicated both my studies and my career to this field — from a line-following Arduino robot in university to full-stack fleet management for multi-robot platforms today.',
-    'My work spans indoor and outdoor mobile robots, quadruped inspection robots, and the web and mobile applications that monitor and control them.',
-    'Robotics is growing every day. The best part of my job is learning new tech stacks to solve real-world problems.',
-  ],
-  email: 'thitiwutphimpisai@gmail.com',
-  links: {
-    github: 'https://github.com/thitiwutphi',
-    linkedin: 'https://www.linkedin.com/in/thitiwut-phimpisai-02bb00299',
-  },
-} as const
+import type { Localized } from '../i18n/locales.ts'
 
-export type FocusIcon = 'navigation' | 'inspection' | 'fleet' | 'ai'
-
-export interface FocusArea {
-  title: string
-  description: string
-  icon: FocusIcon
+export interface Profile {
+  name: string
+  role: Localized
+  location: Localized
+  phone: string
+  /** E.164 form of `phone`, used for tel: links. */
+  phoneHref: string
+  email: string
+  photo: string
+  summary: Localized
+  banner: {
+    image: string
+    imageAlt: Localized
+    /** Headline over the photo, one entry per line. */
+    headline: Localized<string[]>
+    tagline: Localized
+  }
+  footerTagline: Localized
+  links: { linkedin: string; linkedinLabel: string; github: string }
 }
 
-export const focusAreas: FocusArea[] = [
-  {
-    title: 'Autonomous navigation',
-    description: 'SLAM, localization and path planning for indoor and outdoor mobile robots.',
-    icon: 'navigation',
+export const profile: Profile = {
+  name: 'Thitiwut Phimpisai',
+  role: { en: 'Robotics Software Engineer', th: 'วิศวกรซอฟต์แวร์ด้านหุ่นยนต์' },
+  location: { en: 'Bangkok Metropolitan Area', th: 'เขตปริมณฑลกรุงเทพมหานคร' },
+  phone: '0637300458',
+  phoneHref: 'tel:+66637300458',
+  email: 'thitiwutphi@gmail.com',
+  photo: 'images/profile.webp',
+  summary: {
+    en: 'Driven by a deep passion for programming and robotics, my academic background and professional career have been dedicated entirely to this field. My expertise encompasses web and mobile application development, as well as indoor and outdoor mobile robotic systems. Confident in my technical capabilities and efficiency, I am committed to continuous learning and keeping pace with modern technological advancements.',
+    th: 'ด้วยความหลงใหลในการเขียนโปรแกรมและหุ่นยนต์ ผมจึงทุ่มเททั้งการศึกษาและการทำงานให้กับสายงานนี้มาโดยตลอด ความเชี่ยวชาญของผมครอบคลุมการพัฒนาเว็บและแอปพลิเคชันมือถือ รวมถึงระบบหุ่นยนต์เคลื่อนที่ทั้งในอาคารและกลางแจ้ง ผมมั่นใจในความสามารถทางเทคนิคและการทำงานอย่างมีประสิทธิภาพ และมุ่งมั่นเรียนรู้อย่างต่อเนื่องเพื่อก้าวทันเทคโนโลยีสมัยใหม่',
   },
-  {
-    title: 'Inspection robotics',
-    description:
-      'Quadruped and wheeled robots with PTZ, thermal, OGI and acoustic cameras and gas sensors.',
-    icon: 'inspection',
+  banner: {
+    image: 'images/hero-robot.webp',
+    imageAlt: {
+      en: 'ARV quadruped inspection robot standing outdoors',
+      th: 'หุ่นยนต์ตรวจสอบสี่ขาของ ARV ยืนอยู่กลางแจ้ง',
+    },
+    headline: { en: ['Robotics', 'Software', 'Engineer'], th: ['วิศวกรซอฟต์แวร์', 'ด้านหุ่นยนต์'] },
+    tagline: {
+      en: 'Build Smarter Robots for a Better Tomorrow',
+      th: 'สร้างหุ่นยนต์ที่ฉลาดขึ้น เพื่ออนาคตที่ดีกว่า',
+    },
   },
-  {
-    title: 'Fleet platforms',
-    description:
-      'Real-time web and mobile apps for missions, telemetry and live video from many robots.',
-    icon: 'fleet',
+  footerTagline: { en: 'Build Smarter Robots', th: 'สร้างหุ่นยนต์ที่ฉลาดขึ้น' },
+  links: {
+    linkedin: 'https://www.linkedin.com/in/thitiwut-phimpisai-02bb00299',
+    linkedinLabel: 'www.linkedin.com/in/thitiwut-phimpisai-02bb00299',
+    github: 'https://github.com/thitiwutphi',
   },
-  {
-    title: 'Edge AI',
-    description: 'Object detection, OCR, LLMs and VLMs running on robot hardware.',
-    icon: 'ai',
-  },
-]
+}

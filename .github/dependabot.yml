@@ -1,23 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: bun
-    directory: /
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    groups:
-      minor-and-patch:
-        update-types: [minor, patch]
-    ignore:
-      # typescript-eslint supports TypeScript < 6.1 and eslint-plugin-jsx-a11y supports ESLint 9;
-      # bump these majors by hand once the plugins catch up.
-      - dependency-name: typescript
-        update-types: [version-update:semver-major, version-update:semver-minor]
-      - dependency-name: eslint
-        update-types: [version-update:semver-major]
-      - dependency-name: '@eslint/js'
-        update-types: [version-update:semver-major]
-
+  # npm/bun dependencies are not covered: Dependabot can't read Bun 1.4's bun.lock (lockfile v2) yet.
+  # Update them with `bun update` and let CI verify, or re-add a `bun` entry once Dependabot supports it.
   - package-ecosystem: github-actions
     directory: /
     schedule:

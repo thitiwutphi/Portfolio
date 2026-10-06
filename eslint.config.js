@@ -1,5 +1,4 @@
 import js from '@eslint/js'
-import pluginQuery from '@tanstack/eslint-plugin-query'
 import pluginRouter from '@tanstack/eslint-plugin-router'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -18,7 +17,6 @@ export default defineConfig([
       reactHooks.configs.flat['recommended-latest'],
       reactRefresh.configs.vite,
       jsxA11y.flatConfigs.recommended,
-      pluginQuery.configs['flat/recommended'],
       pluginRouter.configs['flat/recommended'],
     ],
     languageOptions: {

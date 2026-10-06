@@ -1,61 +1,51 @@
-export interface SkillGroup {
-  title: string
-  skills: string[]
-}
+import type { Localized } from '@/i18n/locales'
 
-export const skillGroups: SkillGroup[] = [
-  {
-    title: 'Robotics & autonomy',
-    skills: [
-      'ROS',
-      'ROS 2',
-      'SLAM',
-      'RTAB-Map',
-      'SLAM Toolbox',
-      'Cartographer',
-      'Move Base',
-      'Autoware',
-      'Sensor Fusion',
-      'Visual-Inertial Odometry',
-      'PID Control',
-      'MAVLink',
-    ],
-  },
-  {
-    title: 'Perception & AI',
-    skills: ['Computer Vision', 'Object Detection', 'Object Tracking', 'OCR', 'LLMs', 'VLMs'],
-  },
-  {
-    title: 'Sensors & hardware',
-    skills: [
-      '2D/3D LiDAR',
-      'IMU',
-      'Depth Camera',
-      'Thermal / PTZ / OGI / Acoustic Cameras',
-      'Embedded Linux',
-      'STM32',
-      'Arduino',
-      'RTOS',
-      'CAN Bus',
-    ],
-  },
-  {
-    title: 'Software',
-    skills: [
-      'Python',
-      'Rust',
-      'C#',
-      'Kotlin',
-      'JavaScript',
-      'React',
-      'React Native',
-      'Node.js',
-      'SQL',
-      'WPF',
-    ],
-  },
-  {
-    title: 'Real-time & IoT',
-    skills: ['WebSockets', 'Socket.IO', 'MQTT', 'gRPC', 'Modbus'],
-  },
+/*
+ * Based on LinkedIn: the profile's Skills section (Web Development, Robotics), the skills tagged on
+ * each position (ROS, Navigation, Python, SQL, STM32, C#, Modbus, MQTT) and the technologies named in
+ * the experience descriptions and posts. C++, Docker, Git, Problem Solving and Teamwork are from the
+ * site design and confirmed by Thitiwut.
+ *
+ * Technology names stay the same in every language; give a { en, th } pair only for skills that are
+ * translated.
+ */
+export type Skill = string | Localized
+
+/** Always shown in the Top Skills panel — keep this to about 14 so the panel stays compact. */
+export const topSkills: Skill[] = [
+  'Robotics',
+  'ROS',
+  'ROS 2',
+  'SLAM',
+  'Navigation',
+  'Computer Vision',
+  { en: 'Drones', th: 'โดรน' },
+  'C++',
+  'Python',
+  'JavaScript',
+  'React',
+  'Node.js',
+  'Linux',
+  { en: 'Web Development', th: 'การพัฒนาเว็บ' },
 ]
+
+/** Revealed with the "+N more" button. */
+export const moreSkills: Skill[] = [
+  'MAVLink',
+  'Rust',
+  'Kotlin',
+  'React Native',
+  'C#',
+  'SQL',
+  'STM32',
+  'MQTT',
+  'Modbus',
+  'Docker',
+  'Git',
+  { en: 'Problem Solving', th: 'การแก้ปัญหา' },
+  { en: 'Teamwork', th: 'การทำงานเป็นทีม' },
+]
+
+export function skillLabel(skill: Skill, locale: keyof Localized): string {
+  return typeof skill === 'string' ? skill : skill[locale]
+}
